@@ -1,0 +1,41 @@
+id: com.gns3.gui
+runtime: org.kde.Platform
+runtime-version: '6.10'
+sdk: org.kde.Sdk
+command: gns3
+finish-args:
+  - --share=network
+  - --socket=fallback-x11
+  - --socket=wayland
+base: com.riverbankcomputing.PyQt.BaseApp
+base-version: '6.11'
+cleanup-commands:
+  - /app/cleanup-BaseApp.sh
+build-options:
+  env:
+    - BASEAPP_REMOVE_WEBENGINE=1
+modules:
+  - name: python3-rpds-py
+    buildsystem: simple
+    build-commands:
+      - pip3 install --prefix=/app --no-deps *.whl
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/57/d7/fe978efc2ae50abe48eb7464668ea99f53c010c60aeebb7b35ad27f23661/rpds_py-2026.6.3-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+        sha256: acac386b453c2516111b50985d60ce46e7fadb5ea71ae7b25f4c946935bf27cf
+        only-arches: [x86_64]
+      - type: file
+        url: https://files.pythonhosted.org/packages/9e/9b/069aa329940f8207615e091f5eedbbd40e1e15eac68a0790fd05ccdf796c/rpds_py-2026.6.3-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+        sha256: 54f45a148e28767bf343d33a684693c70e451c6f4c0e9904709a723fafbdfc1f
+        only-arches: [aarch64]
+
+  - python3-requirements.json
+
+  - name: gns3-gui
+    buildsystem: simple
+    build-commands:
+      - pip3 install --prefix=/app --no-deps --no-build-isolation .
+    sources:
+      - type: git
+        url: https://github.com/GNS3/gns3-gui.git
+        commit: 5182bc38417b5a3f3301f3db9a73d7bddce74e27
