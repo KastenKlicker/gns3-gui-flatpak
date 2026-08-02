@@ -7,6 +7,7 @@ finish-args:
   - --share=network
   - --socket=fallback-x11
   - --socket=wayland
+  - --talk-name=org.freedesktop.Flatpak
 base: com.riverbankcomputing.PyQt.BaseApp
 base-version: '6.11'
 cleanup-commands:
