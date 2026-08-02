@@ -38,5 +38,5 @@ modules:
       - pip3 install --prefix=/app --no-deps --no-build-isolation .
     sources:
       - type: git
-        url: https://github.com/GNS3/gns3-gui.git
-        commit: 5182bc38417b5a3f3301f3db9a73d7bddce74e27
+        url: https://github.com/KastenKlicker/gns3-gui.git
+        commit: e581320ac477bfc3f18d126e12f6535fe74130c4
