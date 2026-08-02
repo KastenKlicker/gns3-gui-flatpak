@@ -1,0 +1,6 @@
+# GNS3 GUI flatpak
+## Build
+flatpak-builder --force-clean --user --install-deps-from=flathub --repo=repo --install builddir com.gns3.gui.yml
+
+## Run
+flatpak run com.gns3.gui
