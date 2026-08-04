@@ -1,0 +1,39 @@
+name: Generate Flatpak Pip Dependencies
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-deps:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout target repository
+        uses: actions/checkout@v4
+
+      - name: Checkout external repository with requirements.txt
+        uses: actions/checkout@v4
+        with:
+          repository: 'KastenKlicker/gns3-gui'
+          path: 'gns3-gui'
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Setup flatpak-pip-generator
+        run: |
+          curl -L -o flatpak-pip-generator.py https://raw.githubusercontent.com/flatpak/flatpak-builder-tools/refs/heads/master/pip/flatpak-pip-generator.py
+          pip install requirements-parser
+
+      - name: Run flatpak-pip-generator
+        run: |
+          python3 flatpak-pip-generator.py \
+            --requirements=gns3-gui/requirements.txt
+
+      - name: Commit and Push generated file
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update python3-requirements.json"
+          file_pattern: "python3-requirements.json"
