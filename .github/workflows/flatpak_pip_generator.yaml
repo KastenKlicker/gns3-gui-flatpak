@@ -19,6 +19,7 @@ jobs:
         with:
           repository: 'KastenKlicker/gns3-gui'
           path: 'gns3-gui'
+          ref: 'flatpak'
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -28,7 +29,7 @@ jobs:
       - name: Setup flatpak-pip-generator
         run: |
           curl -L -o flatpak-pip-generator.py https://raw.githubusercontent.com/flatpak/flatpak-builder-tools/refs/heads/master/pip/flatpak-pip-generator.py
-          pip install requirements-parser jsonschema
+          pip install requirements-parser
 
       - name: Run flatpak-pip-generator
         run: |
