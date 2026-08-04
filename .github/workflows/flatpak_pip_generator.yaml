@@ -28,7 +28,7 @@ jobs:
       - name: Setup flatpak-pip-generator
         run: |
           curl -L -o flatpak-pip-generator.py https://raw.githubusercontent.com/flatpak/flatpak-builder-tools/refs/heads/master/pip/flatpak-pip-generator.py
-          pip install requirements-parser
+          pip install requirements-parser jsonschema
 
       - name: Run flatpak-pip-generator
         run: |
