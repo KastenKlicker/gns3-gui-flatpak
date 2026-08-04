@@ -7,6 +7,9 @@ jobs:
   generate-deps:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout target repository
         uses: actions/checkout@v4
