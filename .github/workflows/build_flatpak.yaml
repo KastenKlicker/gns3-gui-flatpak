@@ -15,5 +15,5 @@ jobs:
     - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
       with:
         bundle: com.gns3.gui.flatpak
-        manifest-path: com.gns3.gui.yml
+        manifest-path: com.gns3.GNS3.yml
         cache-key: flatpak-builder-${{ github.sha }}
