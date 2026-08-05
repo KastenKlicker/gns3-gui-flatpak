@@ -47,4 +47,4 @@ modules:
     sources:
       - type: git
         url: https://github.com/KastenKlicker/gns3-gui.git
-        commit: 94919d23809f3295bfb10d5d7b50aab00fd7187d
+        commit: e816f9a4abbbd93219e036101282c1c2c7316c0c
