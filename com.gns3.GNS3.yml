@@ -41,10 +41,10 @@ modules:
       - install -Dm644 resources/linux/gns3-gui.xml /app/share/mime/packages/com.gns3.GNS3.xml
       - install -Dm644 resources/images/gns3_icon_128x128.png /app/share/icons/hicolor/128x128/apps/com.gns3.GNS3.png
       - install -Dm644 resources/images/gns3_icon_256x256.png /app/share/icons/hicolor/256x256/apps/com.gns3.GNS3.png
-      - install -Dm644 resources/linux/icons/hicolor/scalable/mimetypes/application-x-gns3.svg /app/share/icons/hicolor/scalable/mimetypes/application-x-gns3.svg
-      - install -Dm644 resources/linux/icons/hicolor/scalable/mimetypes/application-x-gns3appliance.svg /app/share/icons/hicolor/scalable/mimetypes/application-x-gns3appliance.svg
-      - install -Dm644 resources/linux/icons/hicolor/scalable/mimetypes/application-x-gns3project.svg /app/share/icons/hicolor/scalable/mimetypes/application-x-gns3project.svg
+      - install -Dm644 resources/linux/icons/hicolor/scalable/mimetypes/application-x-gns3.svg /app/share/icons/hicolor/scalable/mimetypes/com.gns3.GNS3.application-x-gns3.svg
+      - install -Dm644 resources/linux/icons/hicolor/scalable/mimetypes/application-x-gns3appliance.svg /app/share/icons/hicolor/scalable/mimetypes/com.gns3.GNS3.application-x-gns3appliance.svg
+      - install -Dm644 resources/linux/icons/hicolor/scalable/mimetypes/application-x-gns3project.svg /app/share/icons/hicolor/scalable/mimetypes/com.gns3.GNS3.application-x-gns3project.svg
     sources:
       - type: git
         url: https://github.com/KastenKlicker/gns3-gui.git
-        commit: e816f9a4abbbd93219e036101282c1c2c7316c0c
+        commit: 776c1578ac873a6226c3c886c1d3b85c3d09ec08
