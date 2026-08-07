@@ -17,9 +17,8 @@ jobs:
       - name: Checkout external repository with requirements.txt
         uses: actions/checkout@v4
         with:
-          repository: 'KastenKlicker/gns3-gui'
+          repository: 'GNS3/gns3-gui'
           path: 'gns3-gui'
-          ref: 'flatpak'
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -29,7 +28,41 @@ jobs:
       - name: Setup flatpak-pip-generator
         run: |
           curl -L -o flatpak-pip-generator.py https://raw.githubusercontent.com/flatpak/flatpak-builder-tools/refs/heads/master/pip/flatpak-pip-generator.py
-          pip install requirements-parser
+          pip install requirements-parser packaging
+
+      - name: Remove old version of dupplicated entries from requirements.txt
+        run: |
+          python3 -c "
+          import re
+          from packaging.version import Version
+
+          packages = {}
+
+          with open('gns3-gui/requirements.txt') as f:
+              for line in f:
+                  stripped = line.strip()
+                  if not stripped or stripped.startswith('#') or stripped.startswith('-'):
+                      continue
+
+                  clean = stripped.split(';')[0].split('#')[0].strip()
+                  name_match = re.match(r'([a-zA-Z0-9_.-]+)', clean)
+                  if not name_match:
+                      continue
+                  name = re.sub(r'[-_]+', '-', name_match.group(1).lower())
+
+                  ver_match = re.search(r'[><=!~]+\s*(\d+(?:\.\d+)*)', clean)
+                  version = Version(ver_match.group(1)) if ver_match else Version('0')
+
+                  if name in packages:
+                      if version > packages[name][0]:
+                          packages[name] = (version, line)
+                  else:
+                      packages[name] = (version, line)
+
+          with open('gns3-gui/requirements.txt', 'w') as f:
+              for _, line in packages.values():
+                  f.write(line)
+          "
 
       - name: Run flatpak-pip-generator
         run: |
