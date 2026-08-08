@@ -7,6 +7,7 @@ base: com.riverbankcomputing.PyQt.BaseApp
 base-version: '6.11'
 finish-args:
   - --share=network
+  - --share=ipc
   - --socket=fallback-x11
   - --socket=wayland
   - --filesystem=home
