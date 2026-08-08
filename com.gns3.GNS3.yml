@@ -10,7 +10,9 @@ finish-args:
   - --share=ipc
   - --socket=fallback-x11
   - --socket=wayland
-  - --filesystem=home
+  - --filesystem=xdg-documents:create
+  - --filesystem=xdg-download:ro
+  - --filesystem=~/GNS3:create
   - --talk-name=org.freedesktop.Flatpak
 cleanup-commands:
   - /app/cleanup-BaseApp.sh
